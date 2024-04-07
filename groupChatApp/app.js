@@ -1,27 +1,23 @@
-const http = require('http');
 const express = require('express');
-const fs = require('fs');
-//const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const http = require('http');
+const fs= require('fs');
 
-const app = express();
 
-//app.use(bodyParser.urlencoded({extended:false}));
-app.get('/login', (req,res,next) => {
-    fs.readFile('message.txt' , {encoding:'utf-8'} , (err , data) => {
-        if(err){
-            console.log(err);
-        }
-        res.send(`<body><form action='/submit' method='POST'><input type='text' name='title'><button type='submit'>Login</button></form></body>`);
-    })
-});
-app.post('/submit' ,(req,res,next) => {
-    res.redirect('/')
-})
-app.get('/' , (req,res,next) => {
-    fs.readFile('message.txt' , {encoding:'utf-8'} , (err,data) => {
-        res.send(`<body><div>${data}</div><form action='/submit' method='POST'><input type='text' name='title'><button type='submit'>Send</button></form></body>`);
-    })
-})
+const app= express();
+//const dataRouter = require('./routes/data');
+const messageRouter = require('./routes/message');
+const loginRouter = require('./routes/login');
 
-const server = http.createServer(app);
-server.listen(3000, () => console.log("listening 3000"))
+app.use(bodyParser.urlencoded());
+
+//app.use(dataRouter);
+app.use(loginRouter);
+app.use(messageRouter);
+
+// app.get('/message' , (req,res,next) => {
+//     fs.readFile('message.txt' , )
+//     res.send()
+// })
+
+app.listen(3000, () => console.log('port 3000 started listening'))
