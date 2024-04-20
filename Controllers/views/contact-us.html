@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <link rel="stylesheet" href="/css/add.css">
+
+    <style>
+        
+        header{
+            display: flex;
+            height:5rem;
+           background-color: brown;
+           padding: 0%;
+           margin: 0%;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px; /* Add spacing between navigation items */
+        }
+        .li a:hover,
+        .li a:active{
+            color: black;
+        }
+        h1{
+            text-align: center;
+            color: darkred;
+        }
+        
+        form {
+            width: 80%; /* Adjust the width of the form */
+            margin: auto; /* Center the form horizontally */
+            text-align: center; /* Center-align form elements */
+        }
+
+        input {
+            width: 100%;
+            border-radius: 4px;
+            height: 25px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin-bottom: 10px; 
+          }
+
+        .button {
+            color: white;
+            background-color: darkred;
+            width: 100%; /* Make button fill the width of the form */
+            border-radius: 4px;
+            height: 40px;
+            align-self: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Shop</a></li>
+                <li><a href="/admin/add-product">Add Product</a></li>
+                <button class="li"><a href='/admin/contactus'>Contact Us</a></button>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <h1>Book a call</h1>
+        
+         <hr>
+        <form class="form-control" action="/admin/success" method="POST">
+           <label for="name">Name:  </label>
+           <br>
+           <input type="text" name="name">
+          <br><br>
+           <label for="email">Email :  </label>
+           <br>
+           <input type="email" name="email">
+           <br>
+           <br> 
+           <button class="button" type="submit">GET A CALL</button>   
+        </form>
+    </main>
+</body>
+</html>
