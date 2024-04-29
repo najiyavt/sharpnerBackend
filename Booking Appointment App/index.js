@@ -1,81 +1,75 @@
 async function handleFormSubmit(event){
     event.preventDefault();
-    const userObject = {
+    const userDetails = {
         name:event.target.name.value,
-        phone:event.target.phone.value,
-        email:event.target.email.value
-    };
+        email:event.target.email.value,
+        phone:event.target.phone.value
+    }
     try{
-        const response = await axios.post('http://localhost:4000/user',userObject);
+        const response = await axios.post(`http://localhost:4000/user`,userDetails)
         display(response.data);
-        
-        event.target.name.value="";
-        event.target.email.value="";
-        event.target.phone.value="";
-
-    }catch(error){
-        console.log("ERROR: ",error);
+        event.target.reset();
+    }catch(error) {
+        console.log(error)
     }
 }
 
-window.addEventListener('DOMContentLoaded', async() => {
+document.addEventListener("DOMContentLoaded",async() => {
     try{
-        const response = await axios.get('http://localhost:4000/user')
-        response.data.forEach(user => {
-            display(user);
-        });
-    } catch(error){
-        console.log(error);
+        const response = await axios.get(`http://localhost:4000/expense`);
+        response.data.forEach(res => display(res));
+    }catch(error){
+        console.log( error)
     }
-});
+})
 
-function display(user){
+
+function display(data){
+
     const ul=document.querySelector('ul');
-    const li = document.createElement('li');
-
-    li.innerHTML = `${user.name} - ${user.email} - ${user.phone}`;
-
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name='id';
-    input.value=user.id;
+    const li=document.createElement('li');
+    li.textContent=` ${data.name} - ${data.email} - ${data.phone} - `;
 
     const deleteBtn = document.createElement('button');
+    deleteBtn.textContent='DELETE';
+    deleteBtn.setAttribute('data-id', data.id)
+
     const editBtn = document.createElement('button');
-    deleteBtn.textContent= 'DELETE';
-    editBtn.textContent= 'EDIT';
+    editBtn.textContent='EDIT';
+    editBtn.setAttribute('data-id', data.id)
 
-    deleteBtn.addEventListener('click', async () => {
-       try{
-           const id= li.querySelector('input[name="id"]').value;
-           await axios.delete(`http://localhost:4000/user/${id}`);
-           ul.removeChild(li);
-       }catch (error){
-           console.log(error)
-       }
+    deleteBtn.addEventListener('click', () => {
+        const id = deleteBtn.getAttribute("data-id");
+        axios.delete(`http://localhost:4000/user/${id}`)
+        .then(res => {
+            ul.removeChild(li)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    })
+
+    editBtn.addEventListener('click',() => {
+        const id = editBtn.getAttribute("data-id");
+        populateFormFields(user.id);
     });
 
-    editBtn.addEventListener('click', async () => {
-        try{
-            document.getElementById('name').value=user.name;
-            document.getElementById('email').value=user.email;
-            document.getElementById('phone').value=user.phone;
-
-            const id=user.querySelector('input[name="id"]').value;
-            await axios.delete(`http://localhost:4000/user/${id}`);
-
-            ul.removeChild(li);
-        } catch (error){
-            console.log(error);
-        }
-    });
-
-    ul.appendChild(input);
-    li.appendChild(deleteBtn);
-    li.appendChild(editBtn);
-    ul.appendChild(li);
-        
+    li.appendChild(deleteBtn)
+    li.appendChild(editBtn)
+    ul.appendChild(li)
 }
 
-const form = document.querySelector('form');
-form.addEventListener('submit',handleFormSubmit)
+function populateFormFields(id){
+    axios.get(`http://localhost:4000/user/${id}`)
+    .then(res => {
+        const user = res.data;
+        document.getElementById('name').value = user.name;
+        document.getElementById('email').value = user.email;
+        document.getElementById('phone').value = user.phone;
+    })
+    .catch(error => {
+        console.log("Error fetching user data:", error);
+    });    
+}
+
+window.addEventListener("DOMContentLoaded", getData);

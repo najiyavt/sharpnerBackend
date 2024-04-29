@@ -1,10 +1,13 @@
-const express=require('express')
-const router=express.Router()
+const express=require('express');
+const router = express.Router();
 
-const controller = require('../controllers/admin');
+const controller = require('../controllers/user');
 
-router.post('/user',controller.postUser);
-router.get('/user',controller.getUser);
-router.delete('/user/:userId',controller.DeleteUser);
+router.get('/user',controller.getAddProduct);
+router.post('/user',controller.postAddProduct);
+router.delete('/user/:id',controller.deleteProduct);
+router.get('/user/:id',controller.getEditProduct);
+router.post('/user/:id',controller.postEditProduct);
 
 module.exports=router;
+
