@@ -13,6 +13,11 @@ async function submitForm(event) {
         console.log(error);
     }
 }
-// document.addEventListener('DOMContentLoaded', async () => {
-
-// })
+ document.addEventListener('DOMContentLoaded', async () => {
+    try{
+        const response = axios.get(`http://localhost:8000/user/signup`)
+    }
+    catch(error){
+        console.log(error);
+    }
+})
