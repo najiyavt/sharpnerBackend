@@ -5,15 +5,16 @@ exports.postSignup = async (req,res,next) => {
 
     const { name, email, password } = req.body;
     try{
-        const existingUser = await Signup.findOne({where :{ email : email}})
-        if(existingUser){
-            return res.status(400).json({error:'Email already exists'})
+        const existingUser = await Signup.findOne({ where: { email: email } });
+        if (existingUser) {
+            return res.status(400).json({ error: 'Email already exists' });
+            alert('The email address you entered is already in use.')
         }
         const newUser = await Signup.create({
-            name:name,
-            email:email, 
-            password:password 
-        })
+            name: name,
+            email: email,
+            password: password
+        });
         res.status(201).json(newUser);
     }catch(err) {
         console.log(err);
