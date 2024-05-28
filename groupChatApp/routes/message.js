@@ -12,7 +12,7 @@ router.get('/' , (req,res,next) => {
     method="POST"><input type="text" id="message" name="message" placeholder="message">
     <input type="hidden" id="username" name="username">
     <button type="submit">Send</button></form>`);
-    })
+    });
 });
 router.post('/' , (req,res,next) => {
     //data.push(`${req.body.username} : ${req.body.message}`);

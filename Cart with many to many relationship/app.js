@@ -1,7 +1,7 @@
 const path = require('path');
 
 const express = require('express');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); 
 
 const errorController = require('./controllers/error');
 const sequelize = require('./util/database');
@@ -47,7 +47,6 @@ sequelize
   .sync()
   .then(result => {
     return User.findByPk(1);
-    // console.log(result);
   })
   .then(user => {
     if (!user) {
@@ -56,7 +55,6 @@ sequelize
     return user;
   })
   .then(user => {
-    // console.log(user);
     return user.createCart();
   })
   .then(cart => {

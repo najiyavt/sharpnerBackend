@@ -7,31 +7,52 @@
     <link rel="stylesheet" href="/css/add.css">
 
     <style>
-        
-        header{
-            height:4.5rem;
-           background-color: brown;
-           padding: 0%;
-           margin: 0%;
+         header {
+            height: 4.5rem;
+            background-color: brown;
+            padding: 0;
+            margin: 0;
         }
-        h1{
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px; /* Add spacing between navigation items */
+        }
+
+        h1 {
             text-align: center;
             color: darkred;
         }
-        input{
-            width: 98%;
+
+        form {
+            width: 80%; /* Adjust the width of the form */
+            margin: auto; /* Center the form horizontally */
+            text-align: center; /* Center-align form elements */
+        }
+
+        input {
+            width: 100%; /* Make input fields fill the width of the form */
             border-radius: 4px;
             height: 25px;
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin-bottom: 10px; /* Add spacing between input fields */
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
-        .button{
-           color: white;
-           background-color: darkred;
-           width: 98%;
-           border-radius: 4px;
-           align-self: center;
-           height: 40px;
+
+        .button {
+            color: white;
+            background-color: darkred;
+            width: 100%; /* Make button fill the width of the form */
+            border-radius: 4px;
+            height: 40px;
         }
+        
+       
     </style>
 </head>
 
@@ -48,9 +69,7 @@
     
     <main class="container">
         <h1>Book a call</h1>
-        <br>
-        <h3>Book a call slot or our representative will call you within one hour of selected time</h3>
-        <hr>
+         <hr>
         <form class="form-control" action="/admin/success" method="POST">
            <label for="name">Name:  </label>
            <br>

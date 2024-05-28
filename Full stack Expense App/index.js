@@ -6,7 +6,7 @@ async function handleFormSubmit(event){
         description : event.target.desc.value,
         category : event.target.cat.value,
     }
-    console.log(userDetails)
+    //console.log(userDetails)
     try{
         const response = await axios.post(`http://localhost:3000/expense`,userDetails)
         showUserOnScreen(response.data);

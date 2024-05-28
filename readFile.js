@@ -12,7 +12,7 @@ const server = http.createServer((req , res) => {
                 console.log(err);
             }
             console.log(data);
-            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.writeHead(200, {'Content-Type': 'text/html' });
             res.write('<html><head><title>Enter Message</title></head>');
             res.write(`<body><div>${data}</div>`)
             res.write('<form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></form>');
